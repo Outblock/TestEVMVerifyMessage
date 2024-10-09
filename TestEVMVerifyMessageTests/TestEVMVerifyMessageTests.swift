@@ -65,11 +65,12 @@ final class TestEVMVerifyMessageTests: XCTestCase {
     }
     
     func testABI() async throws {
-        let contract = web3.contract(coaABI, at: EthereumAddress("0x0000000000000000000000029a8C7B0edA95E25f")!)!
+        let contract = web3.contract(coaABI, at: EthereumAddress("0x0000000000000000000000029a8c7b0eda95e25f")!)!
         let encoded = "f853c101888a3ad75d7a438f7e8365766df842b84089ee7683df3263811e143cf061bf26b6e7143c67a175014b26d6581572434b5a1319d285634a9d709d82750401972f30bc254b00e232a0f1d7fe1110f5bc743e".hexValue
         
-        let hashedData = "29d8e880f198acda69a1cd82dd2c8e37edc6bb7e84da26527fb8a0cf7d482cda".hexValue
-        let read = contract.createReadOperation("isValidSignature", parameters: [hashedData, encoded])!
+        // evmHashedData
+        let evmHashedData = "29d8e880f198acda69a1cd82dd2c8e37edc6bb7e84da26527fb8a0cf7d482cda".hexValue
+        let read = contract.createReadOperation("isValidSignature", parameters: [evmHashedData, encoded])!
         let response = try await read.callContractMethod()
         
         guard let data = response["0"] as? Data else {
