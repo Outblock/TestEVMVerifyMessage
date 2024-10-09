@@ -79,13 +79,5 @@ final class TestEVMVerifyMessageTests: XCTestCase {
         print(data.hexValue)
         XCTAssertEqual(data.hexValue.addHexPrefix(), magicValue)
     }
-    
-    func testCadence() async throws {
-        flow.executeScriptAtLatestBlock(cadence:
-"""
-""", arguments: [
-    .
-])
-    }
 
 }
