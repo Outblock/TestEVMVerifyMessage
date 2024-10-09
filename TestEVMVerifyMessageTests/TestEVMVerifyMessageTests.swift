@@ -44,6 +44,7 @@ final class TestEVMVerifyMessageTests: XCTestCase {
      ]
      */
     
+    // Result: Pass
     func testSign() async throws {
         let pubkey = PublicKey(data: Data("04ef9854a8323d39ff7d742e904edfde35c04baff146f6fe2b7bdccced0f01e59998a157c1263ea07228cd4bc1a215c9df18a1e035ba4ff80bb92b5bdb67b2a42e".hexValue), type: .secp256k1Extended)!
         let data = "this is a message".data(using: .utf8)!
@@ -64,9 +65,28 @@ final class TestEVMVerifyMessageTests: XCTestCase {
         XCTAssertTrue(result)
     }
     
+    // Result: Failed
     func testABI() async throws {
         let contract = web3.contract(coaABI, at: EthereumAddress("0x0000000000000000000000029a8c7b0eda95e25f")!)!
         let encoded = "f853c101888a3ad75d7a438f7e8365766df842b84089ee7683df3263811e143cf061bf26b6e7143c67a175014b26d6581572434b5a1319d285634a9d709d82750401972f30bc254b00e232a0f1d7fe1110f5bc743e".hexValue
+        
+        // evmHashedData
+        let evmHashedData = "29d8e880f198acda69a1cd82dd2c8e37edc6bb7e84da26527fb8a0cf7d482cda".hexValue
+        let read = contract.createReadOperation("isValidSignature", parameters: [evmHashedData, encoded])!
+        let response = try await read.callContractMethod()
+        
+        guard let data = response["0"] as? Data else {
+            return
+        }
+        
+        print(data.hexValue)
+        XCTAssertEqual(data.hexValue.addHexPrefix(), magicValue)
+    }
+    
+    // Result: Pass
+    func testABI2() async throws {
+        let contract = web3.contract(coaABI, at: EthereumAddress("0x0000000000000000000000020c260f03355ff69d")!)!
+        let encoded = "f853c1808884221fe0294044d78365766df842b84061765a05182ed529f1ea6fc0828cd45cc5916a91dbd1c4e6f7fcde6ea7b712f61740ba9eb0b8fda244321dec121187c5401e9e7f4dfc0fe878d8e9fbbff0cc9b".hexValue
         
         // evmHashedData
         let evmHashedData = "29d8e880f198acda69a1cd82dd2c8e37edc6bb7e84da26527fb8a0cf7d482cda".hexValue
