@@ -6,6 +6,13 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		15DD16F92CB642640045D719 /* web3swift in Frameworks */ = {isa = PBXBuildFile; productRef = 15DD16F82CB642640045D719 /* web3swift */; };
+		15DD16FC2CB642910045D719 /* SwiftProtobuf in Frameworks */ = {isa = PBXBuildFile; productRef = 15DD16FB2CB642910045D719 /* SwiftProtobuf */; };
+		15DD16FE2CB642910045D719 /* WalletCore in Frameworks */ = {isa = PBXBuildFile; productRef = 15DD16FD2CB642910045D719 /* WalletCore */; };
+		15DD17012CB6429E0045D719 /* Flow in Frameworks */ = {isa = PBXBuildFile; productRef = 15DD17002CB6429E0045D719 /* Flow */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		15DD16DB2CB6421E0045D719 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -59,6 +66,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15DD17012CB6429E0045D719 /* Flow in Frameworks */,
+				15DD16FE2CB642910045D719 /* WalletCore in Frameworks */,
+				15DD16F92CB642640045D719 /* web3swift in Frameworks */,
+				15DD16FC2CB642910045D719 /* SwiftProtobuf in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,6 +146,10 @@
 			);
 			name = TestEVMVerifyMessageTests;
 			packageProductDependencies = (
+				15DD16F82CB642640045D719 /* web3swift */,
+				15DD16FB2CB642910045D719 /* SwiftProtobuf */,
+				15DD16FD2CB642910045D719 /* WalletCore */,
+				15DD17002CB6429E0045D719 /* Flow */,
 			);
 			productName = TestEVMVerifyMessageTests;
 			productReference = 15DD16DA2CB6421E0045D719 /* TestEVMVerifyMessageTests.xctest */;
@@ -195,6 +210,11 @@
 			);
 			mainGroup = 15DD16BF2CB6421C0045D719;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				15DD16F72CB642640045D719 /* XCRemoteSwiftPackageReference "web3swift" */,
+				15DD16FA2CB642910045D719 /* XCRemoteSwiftPackageReference "wallet-core" */,
+				15DD16FF2CB6429E0045D719 /* XCRemoteSwiftPackageReference "flow-swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 15DD16C92CB6421C0045D719 /* Products */;
 			projectDirPath = "";
@@ -558,6 +578,56 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		15DD16F72CB642640045D719 /* XCRemoteSwiftPackageReference "web3swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alladinian/web3swift";
+			requirement = {
+				kind = revision;
+				revision = ec7b76cdfcef6cbadda33bd6471f18049f70f51b;
+			};
+		};
+		15DD16FA2CB642910045D719 /* XCRemoteSwiftPackageReference "wallet-core" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/trustwallet/wallet-core";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.1.10;
+			};
+		};
+		15DD16FF2CB6429E0045D719 /* XCRemoteSwiftPackageReference "flow-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Outblock/flow-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.7;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		15DD16F82CB642640045D719 /* web3swift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15DD16F72CB642640045D719 /* XCRemoteSwiftPackageReference "web3swift" */;
+			productName = web3swift;
+		};
+		15DD16FB2CB642910045D719 /* SwiftProtobuf */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15DD16FA2CB642910045D719 /* XCRemoteSwiftPackageReference "wallet-core" */;
+			productName = SwiftProtobuf;
+		};
+		15DD16FD2CB642910045D719 /* WalletCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15DD16FA2CB642910045D719 /* XCRemoteSwiftPackageReference "wallet-core" */;
+			productName = WalletCore;
+		};
+		15DD17002CB6429E0045D719 /* Flow */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15DD16FF2CB6429E0045D719 /* XCRemoteSwiftPackageReference "flow-swift" */;
+			productName = Flow;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 15DD16C02CB6421C0045D719 /* Project object */;
 }
